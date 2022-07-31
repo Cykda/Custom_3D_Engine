@@ -59,15 +59,22 @@
     <ClInclude Include="Text.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Basic_shapes.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md">
+    <None Include="..\README.md">
       <Filter>Fichiers de ressources</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="LISCENCE.txt">
+    <None Include="..\LICENSE">
       <Filter>Fichiers de ressources</Filter>
-    </Text>
+    </None>
+    <None Include="..\.gitignore">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -249,11 +249,14 @@ void Projector::draw(sf::RenderTarget& window)
     {
         for (int i = 0; i < this->AdjencyMatrix.mat.size(); ++i)
         {
-            for (int j = 0; j < this->AdjencyMatrix.mat[i].size(); ++j)
+            if (this->AdjencyMatrix.mat[i].size() == 2)
             {
-                connectPoints(Buffershape.getShape()[i], Buffershape.getShape()[this->AdjencyMatrix.mat[i][j]], window);
+
+                connectPoints(Buffershape.getShape()[this->AdjencyMatrix.mat[i][0]], Buffershape.getShape()[this->AdjencyMatrix.mat[i][1]], window);
 
             }
+                
+
         }
 
     }

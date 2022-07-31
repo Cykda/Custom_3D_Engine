@@ -157,7 +157,9 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Basic_shapes.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="Parameters.h" />
     <ClInclude Include="Projector.h" />
@@ -166,10 +168,9 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="LISCENCE.txt" />
+    <None Include="..\.gitignore" />
+    <None Include="..\LICENSE" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

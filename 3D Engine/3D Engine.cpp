@@ -2,11 +2,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <cmath>
-#include "Projector.h"
-#include "Shapes.h"
-#include "utils.h"
-#include "Clock.h"
-#include "Text.h"
+#include "Engine.h"
 
 
 
@@ -34,21 +30,11 @@ int main()
     float side = 100;
     Shape test;
 
-    std::vector<Point> tst = {
-        {-side, side, -side},
-        {0, 0, side},
-        {-side, side, side},
-        {0, side, -side}
-    
-    };
 
-    test.Load(tst);
 
-    Matrix<int> AdjencyMat({
-        {0, 1},
-        {1, 2},
-        {2, 3}
-    });
+    test.Load(PYRAMIDSHAPE(side));
+
+
     
 
 
@@ -57,7 +43,7 @@ int main()
     Projector projector(parametres);
     projector.LoadShape(test);
     projector.setDistance(1);
-    projector.LoadAdjacencyMatrix(AdjencyMat);
+    projector.LoadAdjacencyMatrix(PYRAMIDADJENCY);
     
 
 
@@ -93,7 +79,7 @@ int main()
 
         }
         displayText(window, sf::Vector2f(-size[0] / 2, -size[1] / 2), "./assets/fonts/NewShape-Book.ttf", std::to_string(std::round(fps)), 30, sf::Color::Red);
-        
+        DrawPoint(window, sf::Vector2f(0, 0), sf::Color::Red, 2.f);
         window.display();
 
         
