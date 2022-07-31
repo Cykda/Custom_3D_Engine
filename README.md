@@ -52,7 +52,7 @@ This engine is design to be modular, you can write your own 3D shape.
 ## How to write a custom shape
 First of all, the landmark of this engine is: <br/>
 ![alt landmark](http://ixd.education/wp-content/uploads/2014/02/espace3D-021.jpg)
-So you have to first write a shape:
+<br/>So you have to first write a shape:
 ```cpp
 Shape CustomShape;
 
