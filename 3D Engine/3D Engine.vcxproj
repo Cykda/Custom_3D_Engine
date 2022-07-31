@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="Basic_shapes.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="connector.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="Parameters.h" />

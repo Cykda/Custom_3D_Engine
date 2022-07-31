@@ -28,11 +28,11 @@ int main()
     Parameters parametres(true, true, true);
     
     float side = 100;
-    Shape test;
+    Shape test = CubeShape(side);
 
 
 
-    test.Load(PYRAMIDSHAPE(side));
+
 
 
     
@@ -43,7 +43,7 @@ int main()
     Projector projector(parametres);
     projector.LoadShape(test);
     projector.setDistance(1);
-    projector.LoadAdjacencyMatrix(PYRAMIDADJENCY);
+    projector.LoadAdjacencyMatrix(CUBEADJENCY);
     
 
 

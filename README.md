@@ -104,31 +104,37 @@ projector.setDistance(1);
 it will deforme the perspective.
 
 
-Ok so now we have to declare the adjacency matrix.
-The adjacency matrix is just a matrix that dictates 
-the connections between the points.
-For a cube the matrix looks like this:
+Ok so now we have to declare the adjency matrix.
+The adjency matrix is just a ```std::vector<Connector>```
+which describes how to connect the points.
+So we can declare the vector just like this:
 ```cpp
 
-Matrix<int> AdjencyCube({
-        {1, 4},
-        { 2, 5 },
-        { 3, 6 },
-        { 0, 7 },
-        { 5 },
-        { 6 },
-        { 7 },
-        { 4 }
+std::vector<Connector> AdjencyCube({
+
+    Connector(0, 1),
+    Connector(1, 2),
+    Connector(2, 3),
+    Connector(3, 0),
+
+    Connector(4, 5),
+    Connector(5, 6),
+    Connector(6, 7),
+    Connector(7, 4),
+
+    Connector(0, 4),
+    Connector(1, 5),
+    Connector(2, 6),
+    Connector(3, 7)
+
 });
 
 ```
-**explanation:** <br/>
-You declatre a new ```Matrix<int>``` with the constructor of connections;
-for this example int the first line the second point is connected to the fourth 
-(*because the list of points start in the position 0*)
-the second line connects the third point with the sixth.
-And for the fith line we just connect je sixth point with itself to 
-avoid false connection trigger.
+
+so basically, the first point is connected to the second (in the order 
+in which you declared them in the ```std::vector<Point>```)
+
+
 
 And then we just load the above declared matrix in the projector:
 ```cpp
@@ -152,6 +158,16 @@ a small value:
 projector.setAngle(angle);
 angle += 0.01;
 ```
+
+## Amenities
+So I prepared some basic shapes for you so
+here are the functions that declare the ```std::vector<Point>```:<br/>
+1. CubeShape(float side)
+2. PyramidShape(float side)
+
+And here you have the adjency matrices (```std::vector<Connector>```):
+1. PYRAMIDADJENCY
+2. CUBEADJENCY
 
 ## And then what ?
 

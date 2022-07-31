@@ -3,11 +3,11 @@
 #include "matrix.h"
 #include "Shapes.h"
 #include "Parameters.h"
+#include "connector.h"
 
 
 
-extern Matrix<int> ADJENCYCUBE;
-Shape CubeShape(float side);
+
 
 
 
@@ -25,7 +25,7 @@ class Projector
 public:
 	Projector(Parameters p);
 	void LoadShape(Shape& shape);
-	void LoadAdjacencyMatrix(Matrix<int> AdjencyMatrix);
+	void LoadAdjacencyMatrix(std::vector<Connector> AdjencyMatrix);
 	void setAngle(float angle);
 	void setDistance(float distance);
 	void draw(sf::RenderTarget& window);
@@ -43,7 +43,7 @@ private:
 	float distance = 1;
 
 	bool DoAdjencyMatrix = false;
-	Matrix<int> AdjencyMatrix;
+	std::vector<Connector> AdjencyMatrix;
 
 
 

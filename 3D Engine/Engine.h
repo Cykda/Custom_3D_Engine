@@ -5,3 +5,4 @@
 #include "Clock.h"
 #include "Text.h"
 #include "Basic_shapes.h"
+#include "connector.h"

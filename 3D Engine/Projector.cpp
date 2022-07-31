@@ -4,24 +4,6 @@
 
 using namespace std;
 
-Shape CubeShape(float side)
-{
-    std::vector<Point> Points;
-    Points = {
-        Point(-side, -side, -side),
-        Point(side, -side, -side),
-        Point(side, side, -side),
-        Point(-side, side, -side),
-        Point(-side, -side, side),
-        Point(side, -side, side),
-        Point(side, side, side),
-        Point(-side, side, side)
-    };
-
-    Shape C;
-    C.Load(Points);
-    return C;
-}
 
 void connectPoints(Point p1, Point p2, sf::RenderTarget& window)
 {
@@ -91,7 +73,7 @@ void Projector::LoadShape(Shape& shape)
     this->shape = shape;
 }
 
-void Projector::LoadAdjacencyMatrix(Matrix<int> AdjencyMatrix)
+void Projector::LoadAdjacencyMatrix(std::vector<Connector> AdjencyMatrix)
 {
     this->AdjencyMatrix = AdjencyMatrix;
     this->DoAdjencyMatrix = true;
@@ -247,14 +229,12 @@ void Projector::draw(sf::RenderTarget& window)
 
     if (this->DoAdjencyMatrix)
     {
-        for (int i = 0; i < this->AdjencyMatrix.mat.size(); ++i)
+        for (int i = 0; i < this->AdjencyMatrix.size(); ++i)
         {
-            if (this->AdjencyMatrix.mat[i].size() == 2)
-            {
 
-                connectPoints(Buffershape.getShape()[this->AdjencyMatrix.mat[i][0]], Buffershape.getShape()[this->AdjencyMatrix.mat[i][1]], window);
+                connectPoints(Buffershape.getShape()[this->AdjencyMatrix[i].p1], Buffershape.getShape()[this->AdjencyMatrix[i].p2], window);
 
-            }
+
                 
 
         }
@@ -270,13 +250,3 @@ void Projector::draw(sf::RenderTarget& window)
 }
 
 
-Matrix<int> ADJENCYCUBE({
-        {1, 4},
-        { 2, 5 },
-        { 3, 6 },
-        { 0, 7 },
-        { 5 },
-        { 6 },
-        { 7 },
-        { 4 }
-});

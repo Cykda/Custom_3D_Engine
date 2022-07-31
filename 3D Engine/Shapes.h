@@ -21,6 +21,20 @@ public:
 };
 
 
+class Point2i
+{
+public:
+
+	Point2i(int X = 0, int Y = 0)
+	{
+		this->x = X;
+		this->y = Y;
+	}
+
+	int x;
+	int y;
+
+};
 
 
 
