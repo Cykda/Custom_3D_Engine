@@ -41,7 +41,6 @@ matrix with rotation matrices:
 
 and then you multiply the result by the projection matrix.
 
-
 ## How to use my custom engine
 
 First of all my engine is running on **Visual Studio 2022** and runs on
@@ -51,8 +50,9 @@ To run my code, just open the file **3D Engine.cpp** and run the code.
 This engine is design to be modular, you can write your own 3D shape.
 
 ## How to write a custom shape
-
-First of all you have to write a shape:
+First of all, the landmark of this engine is:
+![alt landmark](http://ixd.education/wp-content/uploads/2014/02/espace3D-01.jpg)
+So you have to first write a shape:
 ```cpp
 Shape CustomShape;
 
