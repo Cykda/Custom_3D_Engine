@@ -43,7 +43,7 @@ int main()
     Projector projector(parametres);
     projector.LoadShape(test);
     projector.setDistance(1);
-    projector.LoadAdjacencyMatrix(CUBEADJENCY);
+    projector.LoadAdjacencyMatrix(CUBEADJACENCY);
     
 
 

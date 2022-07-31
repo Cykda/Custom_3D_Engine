@@ -104,13 +104,13 @@ projector.setDistance(1);
 it will deforme the perspective.
 
 
-Ok so now we have to declare the adjency matrix.
-The adjency matrix is just a ```std::vector<Connector>```
+Ok so now we have to declare the adjacency matrix.
+The adjacency matrix is just a ```std::vector<Connector>```
 which describes how to connect the points.
 So we can declare the vector just like this:
 ```cpp
 
-std::vector<Connector> AdjencyCube({
+std::vector<Connector> AdjacencyCube({
 
     Connector(0, 1),
     Connector(1, 2),
@@ -138,7 +138,7 @@ in which you declared them in the ```std::vector<Point>```)
 
 And then we just load the above declared matrix in the projector:
 ```cpp
-projector.LoadAdjacencyMatrix(AdjencyCube);
+projector.LoadAdjacencyMatrix(AdjacencyCube);
 ```
 
 And then in **SFML** we just draw the projector:
@@ -165,9 +165,9 @@ here are the functions that declare the ```std::vector<Point>```:<br/>
 1. CubeShape(float side)
 2. PyramidShape(float side)
 
-And here you have the adjency matrices (```std::vector<Connector>```):
-1. PYRAMIDADJENCY
-2. CUBEADJENCY
+And here you have the adjacency matrices (```std::vector<Connector>```):
+1. PYRAMIDADJACENCY
+2. CUBEADJACENCY
 
 ## And then what ?
 

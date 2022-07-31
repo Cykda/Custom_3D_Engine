@@ -20,7 +20,7 @@ std::vector<Point> PyramidShape(float side)
 
 
 
-extern std::vector<Connector> PYRAMIDADJENCY({
+extern std::vector<Connector> PYRAMIDADJACENCY({
 
     Connector(0, 1),
     Connector(1, 2),
@@ -54,7 +54,7 @@ Shape CubeShape(float side)
 }
 
 
-extern std::vector<Connector> CUBEADJENCY({
+extern std::vector<Connector> CUBEADJACENCY({
 
     Connector(0, 1),
     Connector(1, 2),
