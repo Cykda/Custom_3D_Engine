@@ -5,9 +5,9 @@
 
 
 // Pyramid
-std::vector<Point> PyramidShape(float side)
+Shape PyramidShape(float side)
 {
-    return std::vector<Point>( {
+    std::vector<Point> PyramidVector( {
         Point(0, -side, 0),
         Point(-side, side, -side),
         Point(-side, side, side),
@@ -16,6 +16,9 @@ std::vector<Point> PyramidShape(float side)
 
 
     });
+    Shape s;
+    s.Load(PyramidVector);
+    return s;
 }
 
 
