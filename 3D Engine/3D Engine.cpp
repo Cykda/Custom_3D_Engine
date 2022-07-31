@@ -13,37 +13,42 @@ using std::string;
 using std::cin;
 
 
+
+
 int main()
 {
 
+
+
     int size[2] = {1920, 1080};
-    sf::RenderWindow window(sf::VideoMode(size[0], size[1]), "Hello World !");
+    
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+    
+    sf::RenderWindow window(sf::VideoMode(size[0], size[1]), "Hello World !", sf::Style::Default, settings);
     sf::View Origin(sf::FloatRect(-size[0] / 2, -size[1] / 2, size[0], size[1]));
     window.setVerticalSyncEnabled(true);
 
     window.setView(Origin);
 
 
-    Shape Cube = CubeShape(200);
+
     Parameters parametres(true, true, true);
     
     float side = 100;
-    Shape test = PyramidShape(side);
-
-
-
-
-
+    float length = 200;
 
     
 
 
 
+    Shape hex = HexagonPrism(side, length);
+
 
     Projector projector(parametres);
-    projector.LoadShape(test);
+    projector.LoadShape(hex);
     projector.setDistance(1);
-    projector.LoadAdjacencyMatrix(PYRAMIDADJACENCY);
+    projector.LoadAdjacencyMatrix(HEXAGONPRISMADJACENCY);
     
 
 
@@ -70,6 +75,7 @@ int main()
             }
         }
         window.clear();
+        DrawPoint(window, sf::Vector2f(0, 0), sf::Color::Red, 2.f);
         projector.draw(window);
         if (CustomTimer.doTriggered())
         {
@@ -79,7 +85,6 @@ int main()
 
         }
         displayText(window, sf::Vector2f(-size[0] / 2, -size[1] / 2), "./assets/fonts/NewShape-Book.ttf", std::to_string(std::round(fps)), 30, sf::Color::Red);
-        DrawPoint(window, sf::Vector2f(0, 0), sf::Color::Red, 2.f);
         window.display();
 
         

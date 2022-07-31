@@ -42,6 +42,13 @@ class Shape
 {
 public:
 
+
+	Shape() = default;
+	Shape(std::vector<Point> shape)
+	{
+		this->shape = shape;
+	}
+
 	void Load(std::vector<Point> shape)
 	{
 		this->shape = shape;

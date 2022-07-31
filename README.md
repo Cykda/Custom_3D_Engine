@@ -164,10 +164,12 @@ So I prepared some basic shapes for you so
 here are the functions that declare the ```std::vector<Point>```:<br/>
 1. CubeShape(float side)
 2. PyramidShape(float side)
+3. HexagonPrism
 
 And here you have the adjacency matrices (```std::vector<Connector>```):
 1. PYRAMIDADJACENCY
 2. CUBEADJACENCY
+3. HEXAGONPRISMADJACENCY
 
 ## And then what ?
 
