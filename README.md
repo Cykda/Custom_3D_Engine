@@ -1,7 +1,7 @@
 ﻿# Custom 3D engine for SFML
 
 
-## preamble
+## Preamble
 
 Hi everybody, I present myself in front of this community for showing
 you my custom 3D engine for Simple and Fast Multimedia Library (**SFML**).
@@ -173,7 +173,7 @@ And here you have the adjacency matrices (```std::vector<Connector>```):
 
 ## And then what ?
 
-And then what ?!? this kind of project is never finished and if you explore
+And then what ?!? <br/>this kind of project is never finished and if you explore
 the source code you can probably figure a better way to do this stuff.
 This software is extremely slow and when you write a complex custom
 shape it is very slow and my next goal is to add translation matrix
