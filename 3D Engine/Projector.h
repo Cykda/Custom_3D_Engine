@@ -2,9 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "matrix.h"
 #include "Shapes.h"
-#include "Parameters.h"
-#include "connector.h"
 
+#include "connector.h"
+#include "utils.h"
 
 
 
@@ -23,17 +23,16 @@
 class Projector
 {
 public:
-	Projector(Parameters p);
+	Projector();
 	void LoadShape(Shape& shape);
 	void LoadAdjacencyMatrix(std::vector<Connector> AdjencyMatrix);
-	void setAngle(float angle);
+	void setAngle(float angleX, float angleY, float angleZ);
 	void setDistance(float distance);
 	void draw(sf::RenderWindow& window);
 	void showPoint(bool state, float radius, sf::Color pointsColor);
 
 private:
 
-	Parameters parametres;
 
 	Matrix<float> RotationX;
 	Matrix<float> RotationY;
@@ -49,7 +48,9 @@ private:
 
 
 	Matrix<float> Projected2D;
-	float angle = 0;
+	float angleX = 0.f;
+	float angleY = 0.f;
+	float angleZ = 0.f;
 
 	Shape shape;
 

@@ -150,7 +150,6 @@
   <ItemGroup>
     <ClCompile Include="3D Engine.cpp" />
     <ClCompile Include="Clock.cpp" />
-    <ClCompile Include="Parameters.cpp" />
     <ClCompile Include="Projector.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="connector.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="matrix.h" />
-    <ClInclude Include="Parameters.h" />
     <ClInclude Include="Projector.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="Text.h" />

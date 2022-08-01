@@ -27,13 +27,12 @@ int main()
     
     sf::RenderWindow window(sf::VideoMode(size[0], size[1]), "Custom 3D Engine", sf::Style::Default, settings);
     sf::View Origin(sf::FloatRect(-size[0] / 2, -size[1] / 2, size[0], size[1]));
-    window.setVerticalSyncEnabled(false);
+    window.setVerticalSyncEnabled(true);
 
     window.setView(Origin);
 
 
 
-    Parameters parametres(true, true, true);
     
     float side = 300;
     float length = 300;
@@ -42,19 +41,22 @@ int main()
 
 
 
-    Shape hex = HexagonPrism(side, length);
+    Shape shape = PyramidShape(side);
 
 
-    Projector projector(parametres);
-    projector.LoadShape(hex);
+    Projector projector;
+    projector.LoadShape(shape);
     projector.setDistance(1);
-    projector.LoadAdjacencyMatrix(HEXAGONPRISMADJACENCY);
-    projector.showPoint(true, 10, sf::Color::Green);
+    projector.LoadAdjacencyMatrix(PYRAMIDADJACENCY);
+    projector.showPoint(true, 5, sf::Color::Yellow);
     
 
 
-    float angle = 0;
-
+    float angleX = 0.f;
+    float angleY = 0.f;
+    float angleZ = 0.f;
+    
+    float RotationSpeed = 0.6f;
 
     sf::Clock clock;
     Clock CustomTimer(1.f);
@@ -63,6 +65,11 @@ int main()
     float dt = 0;
 
     float fps = 0;
+
+    bool Dpressed = false;
+    bool Zpressed = false;
+    bool Qpressed = false;
+    bool Spressed = false;
 
 
     while (window.isOpen())
@@ -74,9 +81,54 @@ int main()
             {
                 window.close();
             }
+            else if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::D)
+                {
+                    Dpressed = true;
+                }
+                else if (event.key.code == sf::Keyboard::Z)
+                {
+                    Zpressed = true;
+                }
+                else if (event.key.code == sf::Keyboard::Q)
+                {
+                    Qpressed = true;
+                }
+                else if (event.key.code == sf::Keyboard::S)
+                {
+                    Spressed = true;
+                }
+            }
+            else if (event.type == sf::Event::KeyReleased)
+            {
+                if (event.key.code == sf::Keyboard::D)
+                {
+                    Dpressed = false;
+                }
+                else if (event.key.code == sf::Keyboard::Z)
+                {
+                    Zpressed = false;
+                }
+                else if (event.key.code == sf::Keyboard::Q)
+                {
+                    Qpressed = false;
+                }
+                else if (event.key.code == sf::Keyboard::S)
+                {
+                    Spressed = false;
+                }
+            }
+
+
         }
+
+
         window.clear();
         DrawPoint(window, sf::Vector2f(0, 0), sf::Color::Red, 2.f);
+        
+
+        
         projector.draw(window);
         if (CustomTimer.doTriggered())
         {
@@ -91,10 +143,29 @@ int main()
         
         dt = clock.restart().asSeconds();
         
-        projector.setAngle(angle);
         CustomTimer.update(dt);
-        angle += 0.01;
+        
+        if (Zpressed)
+        {
+            angleX += RotationSpeed;
+        }
+        if (Dpressed)
+        {
+            angleY += RotationSpeed;
+        }
+        if (Qpressed)
+        {
+            angleZ += RotationSpeed;
+        }
+        if (Spressed)
+        {
+            angleX -= RotationSpeed;
+        }
 
+        //cout << "Angle X: " << angleX << endl;
+        
+        
+        projector.setAngle(angleX, angleY, angleZ);
     
     }
 

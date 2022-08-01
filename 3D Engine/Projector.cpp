@@ -29,32 +29,31 @@ void Projector::setDistance(float distance)
 
 }
 
-Projector::Projector(Parameters p)
+Projector::Projector()
 {
 
 	//initiate rotation matrices
-    this->parametres = p;
     this->RotationX.mat = 
     {
         {1, 0, 0},
-        {0, cos(this->angle), -sin(this->angle)},
-        {0, sin(this->angle), cos(this->angle)}
+        {0, cos(this->angleX), -sin(this->angleX)},
+        {0, sin(this->angleX), cos(this->angleX)}
 
     };
 
     this->RotationY.mat = 
     {
-        {cos(this->angle), 0, sin(this->angle)},
+        {cos(this->angleY), 0, sin(this->angleY)},
         {0, 1, 0},
-        {-sin(this->angle), 0, cos(this->angle)}
+        {-sin(this->angleY), 0, cos(this->angleY)}
 
     };
 
 
     this->RotationZ.mat =
     {
-        {cos(this->angle), -sin(this->angle), 0},
-        {sin(this->angle), cos(this->angle), 0},
+        {cos(this->angleZ), -sin(this->angleZ), 0},
+        {sin(this->angleZ), cos(this->angleZ), 0},
         {0, 0, 1}
     };
 
@@ -79,9 +78,11 @@ void Projector::LoadAdjacencyMatrix(std::vector<Connector> AdjencyMatrix)
     this->DoAdjencyMatrix = true;
 }
 
-void Projector::setAngle(float angle)
+void Projector::setAngle(float angleX, float angleY, float angleZ)
 {
-    this->angle = angle;
+    this->angleX = deg2rad(angleX);
+    this->angleY = deg2rad(angleY);
+    this->angleZ = deg2rad(angleZ);
 }
 
 void Projector::draw(sf::RenderWindow& window)
@@ -90,24 +91,24 @@ void Projector::draw(sf::RenderWindow& window)
     this->RotationX.mat =
     {
         {1, 0, 0},
-        {0, cos(this->angle), -sin(this->angle)},
-        {0, sin(this->angle), cos(this->angle)}
+        {0, cos(this->angleX), -sin(this->angleX)},
+        {0, sin(this->angleX), cos(this->angleX)}
 
     };
 
     this->RotationY.mat =
     {
-        {cos(this->angle), 0, sin(this->angle)},
+        {cos(this->angleY), 0, sin(this->angleY)},
         {0, 1, 0},
-        {-sin(this->angle), 0, cos(this->angle)}
+        {-sin(this->angleY), 0, cos(this->angleY)}
 
     };
 
 
     this->RotationZ.mat =
     {
-        {cos(this->angle), -sin(this->angle), 0},
-        {sin(this->angle), cos(this->angle), 0},
+        {cos(this->angleZ), -sin(this->angleZ), 0},
+        {sin(this->angleZ), cos(this->angleZ), 0},
         {0, 0, 1}
     };
 
@@ -132,7 +133,7 @@ void Projector::draw(sf::RenderWindow& window)
         
         
         Matrix<float> Rotated;
-
+        /*
         if (this->parametres.RotateX && !this->parametres.RotateY && !this->parametres.RorateZ)
         {
             Rotated = matmul<float>(this->RotationX, projected);
@@ -173,6 +174,13 @@ void Projector::draw(sf::RenderWindow& window)
 
 
 
+        */
+
+        Rotated = matmul<float>(this->RotationX, projected);
+        Rotated = matmul<float>(this->RotationY, Rotated);
+        Rotated = matmul<float>(this->RotationZ, Rotated);
+        
+        
         std::vector<float> BufferNorm = {Rotated.mat[0][0], Rotated.mat[1][0] , Rotated.mat[2][0]};
 
 
