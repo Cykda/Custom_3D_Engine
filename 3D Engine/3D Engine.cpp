@@ -34,20 +34,48 @@ int main()
 
 
     
-    float side = 300;
-    float length = 300;
+    float side = 200;
+    float length = 200;
+
+    float factor = 0.5f;
+
+
+
+
+    std::vector<Point> Hexagone_Cone({
+
+
+        Point(side * cos(deg2rad(240)), side * sin(deg2rad(240)), length),
+        Point(-side, 0, length),
+        Point(side * cos(deg2rad(120)), side * sin(deg2rad(120)), length),
+        Point(side * cos(deg2rad(60)), side * sin(deg2rad(60)), length),
+        Point(side, 0, length),
+        Point(side * cos(deg2rad(300)), side * sin(deg2rad(300)), length),
+
+
+
+        Point(side * cos(deg2rad(240)) * factor, side * sin(deg2rad(240) * factor), -length),
+        Point(-side, 0, -length),
+        Point(side * cos(deg2rad(120)) * factor, side * sin(deg2rad(120)) * factor, -length),
+        Point(side * cos(deg2rad(60)) * factor, side * sin(deg2rad(60)) * factor, -length),
+        Point(side, 0, -length),
+        Point(side * cos(deg2rad(300)) * factor, side * sin(deg2rad(300)) * factor, -length)
+
+
+
+
+    });
 
     
 
 
 
-    Shape shape = PyramidShape(side);
-
-
+    Shape shape = HexagonPrism(side, length);
+    
     Projector projector;
     projector.LoadShape(shape);
     projector.setDistance(1);
-    projector.LoadAdjacencyMatrix(PYRAMIDADJACENCY);
+    projector.LoadAdjacencyMatrix(HEXAGONPRISMADJACENCY);
     projector.showPoint(true, 5, sf::Color::Yellow);
     
 

@@ -133,48 +133,6 @@ void Projector::draw(sf::RenderWindow& window)
         
         
         Matrix<float> Rotated;
-        /*
-        if (this->parametres.RotateX && !this->parametres.RotateY && !this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationX, projected);
-        }
-        else if (!this->parametres.RotateX && this->parametres.RotateY && !this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationY, projected);
-        }
-        else if (!this->parametres.RotateX && !this->parametres.RotateY && this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationZ, projected);
-        }
-        else if (this->parametres.RotateX && this->parametres.RotateY && !this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationX, projected);
-            Rotated = matmul<float>(this->RotationY, Rotated);
-        }
-        else if (this->parametres.RotateX && !this->parametres.RotateY && this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationX, projected);
-            Rotated = matmul<float>(this->RotationZ, Rotated);
-        }
-        else if (!this->parametres.RotateX && this->parametres.RotateY && this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationY, projected);
-            Rotated = matmul<float>(this->RotationZ, Rotated);
-        }
-        else if (this->parametres.RotateX && this->parametres.RotateY && this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationX, projected);
-            Rotated = matmul<float>(this->RotationY, Rotated);
-            Rotated = matmul<float>(this->RotationZ, Rotated);
-        }
-        else
-        {
-            Rotated = projected;
-        }
-
-
-
-        */
 
         Rotated = matmul<float>(this->RotationX, projected);
         Rotated = matmul<float>(this->RotationY, Rotated);
@@ -183,20 +141,16 @@ void Projector::draw(sf::RenderWindow& window)
         
         std::vector<float> BufferNorm = {Rotated.mat[0][0], Rotated.mat[1][0] , Rotated.mat[2][0]};
 
-
-
         float CameraDistance = 1 / (distance - (Rotated.mat[2][0] / 1000));
 
-     
-        this->ProjectionMatrix.mat =
+        if (this->distance == 0)
         {
-            {abs(CameraDistance), 0, 0},
-            {0, abs(CameraDistance), 0}
-        };
+            CameraDistance = 1;
+        }
 
         this->Projected2D = Matrix<float>({
-            {Rotated.mat[0][0]},
-            {Rotated.mat[1][0]}
+            {Rotated.mat[0][0] * abs(CameraDistance)},
+            {Rotated.mat[1][0] * abs(CameraDistance)}
         });
         
 
