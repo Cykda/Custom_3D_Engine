@@ -72,6 +72,13 @@ int main()
     bool Spressed = false;
 
 
+    // H, J, K for automatic rotation
+
+    bool Hpressed = false;
+    bool Jpressed = false;
+    bool Kpressed = false;
+
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -99,6 +106,42 @@ int main()
                 {
                     Spressed = true;
                 }
+
+
+                else if (event.key.code == sf::Keyboard::H)
+                {
+                    if (Hpressed)
+                    {
+                        Hpressed = false;
+                    }
+                    else
+                    {
+                        Hpressed = true;
+                    }
+                }
+                else if (event.key.code == sf::Keyboard::J)
+                {
+                    if (Jpressed)
+                    {
+                        Jpressed = false;
+                    }
+                    else
+                    {
+                        Jpressed = true;
+                    }
+                }
+                else if (event.key.code == sf::Keyboard::K)
+                {
+                    if (Kpressed)
+                    {
+                        Kpressed = false;
+                    }
+                    else
+                    {
+                        Kpressed = true;
+                    }
+                }
+
             }
             else if (event.type == sf::Event::KeyReleased)
             {
@@ -135,9 +178,10 @@ int main()
             
             fps = 1 / dt;
             CustomTimer.reset(false);
+            fps = roundf(fps);
 
         }
-        displayText(window, sf::Vector2f(-size[0] / 2, -size[1] / 2), "./assets/fonts/NewShape-Book.ttf", std::to_string(std::round(fps)), 30, sf::Color::Red);
+        displayText(window, sf::Vector2f(-size[0] / 2, -size[1] / 2), "./assets/fonts/NewShape-Book.ttf", std::to_string(fps), 30, sf::Color::Red);
         window.display();
 
         
@@ -145,18 +189,20 @@ int main()
         
         CustomTimer.update(dt);
         
-        if (Zpressed)
+        if (Zpressed || Hpressed)
         {
             angleX += RotationSpeed;
         }
-        if (Dpressed)
+        if (Dpressed || Jpressed)
         {
             angleY += RotationSpeed;
         }
-        if (Qpressed)
+        if (Qpressed || Kpressed)
         {
             angleZ += RotationSpeed;
         }
+
+
         if (Spressed)
         {
             angleX -= RotationSpeed;

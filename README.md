@@ -85,16 +85,12 @@ CustomShape.Load(Points);
 ```
 now that we have a shape we just have to setup the engine, I assume that 
 you know how to setup **SFML**.
-First we have to declare parameters:
-```cpp
-Parameters parameters(true, true, true); 
-// Parameters parameters(doRotateX, doRotateY, doRotateZ);
-```
+
 
 and then we have to declare the projector, load the shape and define
 the perspective:
 ```cpp
-Projector projector(parameters);
+Projector projector;
 projector.LoadShape(CustomShape);
 projector.setDistance(1);
 
@@ -151,12 +147,19 @@ window.display();
 ```
 
 In case you set the projector to rotate you just have to create an
-angle variable: ```float angle = 0.f;```,
+angle variable:
+```cpp
+float angleX = 0.f;
+float angleY = 0.f;
+float angleZ = 0.f;
+```
 update the angle automatically and then increment the angle value by
 a small value:
 ```cpp
-projector.setAngle(angle);
-angle += 0.01;
+projector.setAngle(angleX, angleY, angleZ);
+angleX += 1.f;
+angleY += 1.f;
+angleZ += 1.f;
 ```
 
 ## Amenities
