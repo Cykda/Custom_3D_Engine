@@ -25,9 +25,9 @@ int main()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     
-    sf::RenderWindow window(sf::VideoMode(size[0], size[1]), "Hello World !", sf::Style::Default, settings);
+    sf::RenderWindow window(sf::VideoMode(size[0], size[1]), "Custom 3D Engine", sf::Style::Default, settings);
     sf::View Origin(sf::FloatRect(-size[0] / 2, -size[1] / 2, size[0], size[1]));
-    window.setVerticalSyncEnabled(true);
+    window.setVerticalSyncEnabled(false);
 
     window.setView(Origin);
 
@@ -35,8 +35,8 @@ int main()
 
     Parameters parametres(true, true, true);
     
-    float side = 100;
-    float length = 200;
+    float side = 300;
+    float length = 300;
 
     
 
@@ -49,6 +49,7 @@ int main()
     projector.LoadShape(hex);
     projector.setDistance(1);
     projector.LoadAdjacencyMatrix(HEXAGONPRISMADJACENCY);
+    projector.showPoint(true, 10, sf::Color::Green);
     
 
 

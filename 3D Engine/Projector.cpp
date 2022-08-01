@@ -84,7 +84,7 @@ void Projector::setAngle(float angle)
     this->angle = angle;
 }
 
-void Projector::draw(sf::RenderTarget& window)
+void Projector::draw(sf::RenderWindow& window)
 {
 
     this->RotationX.mat =
@@ -132,20 +132,6 @@ void Projector::draw(sf::RenderTarget& window)
         
         
         Matrix<float> Rotated;
-        /*
-        if (this->parametres.RotateX)
-        {
-            Rotated = matmul<float>(this->RotationX, projected);
-        }
-        if (this->parametres.RotateY)
-        {
-            Rotated = matmul<float>(this->RotationY, Rotated);
-        }
-        if (this->parametres.RorateZ)
-        {
-            Rotated = matmul<float>(this->RotationZ, Rotated);
-        }
-        */
 
         if (this->parametres.RotateX && !this->parametres.RotateY && !this->parametres.RorateZ)
         {
@@ -184,7 +170,8 @@ void Projector::draw(sf::RenderTarget& window)
         {
             Rotated = projected;
         }
-        float z = 0;
+
+
 
         std::vector<float> BufferNorm = {Rotated.mat[0][0], Rotated.mat[1][0] , Rotated.mat[2][0]};
 
@@ -204,14 +191,12 @@ void Projector::draw(sf::RenderTarget& window)
             {Rotated.mat[1][0]}
         });
         
-        
-        sf::CircleShape point;
-        point.setPointCount(100);
-        point.setRadius(2);
-        point.setOrigin(sf::Vector2f(point.getGlobalBounds().width / 2, point.getGlobalBounds().height / 2));
-        point.setFillColor(sf::Color::White);
-        point.setPosition(sf::Vector2f(this->Projected2D.mat[0][0], this->Projected2D.mat[1][0]));
-        window.draw(point);
+
+        if (this->doShowPoint)
+        {
+            DrawPoint(window, sf::Vector2f(this->Projected2D.mat[0][0], this->Projected2D.mat[1][0]), this->pointsColor, this->PointsRadius);
+        }
+
 
 
         
@@ -247,6 +232,13 @@ void Projector::draw(sf::RenderTarget& window)
 
 
 
+}
+
+void Projector::showPoint(bool state, float radius, sf::Color pointsColor)
+{
+    this->doShowPoint = state;
+    this->PointsRadius = radius;
+    this->pointsColor = pointsColor;
 }
 
 

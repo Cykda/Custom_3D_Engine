@@ -1,7 +1,6 @@
 #include "Shapes.h"
 
 
-
 void DrawPoint(sf::RenderWindow& window, sf::Vector2f position, sf::Color color, float radius)
 {
 	sf::CircleShape point;
@@ -13,3 +12,4 @@ void DrawPoint(sf::RenderWindow& window, sf::Vector2f position, sf::Color color,
 	window.draw(point);
 
 }
+

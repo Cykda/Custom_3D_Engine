@@ -28,7 +28,8 @@ public:
 	void LoadAdjacencyMatrix(std::vector<Connector> AdjencyMatrix);
 	void setAngle(float angle);
 	void setDistance(float distance);
-	void draw(sf::RenderTarget& window);
+	void draw(sf::RenderWindow& window);
+	void showPoint(bool state, float radius, sf::Color pointsColor);
 
 private:
 
@@ -42,7 +43,7 @@ private:
 
 	float distance = 1;
 
-	bool DoAdjencyMatrix = false;
+	bool DoAdjencyMatrix = true;
 	std::vector<Connector> AdjencyMatrix;
 
 
@@ -53,8 +54,9 @@ private:
 	Shape shape;
 
 
-
-
+	bool doShowPoint = false;
+	sf::Color pointsColor = sf::Color::White;
+	float PointsRadius = 2.f;
 
 };
 
